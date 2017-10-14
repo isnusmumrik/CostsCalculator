@@ -1,0 +1,142 @@
+﻿@using System.Web.Script.Serialization
+@using System.Web.UI.WebControls
+@using CostsCalculator.Models
+@model IEnumerable<CostsCalculator.Models.Purchase>
+
+<div id="chart_div"></div>
+
+<script type="text/javascript">
+
+    //Подгружаем Api
+    google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+    // Устанавливаем callback
+    google.setOnLoadCallback(drawChart);
+
+
+
+    function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Category');
+        data.addColumn('number', 'Slices');
+        var options;
+        var colorsTabel = [];
+        var fromD = $('#dateFrom input:first-child').val();
+        var toD = $('#dateTo input:first-child').val();
+        var categoryId = $("#categoryId select[name=category] option:selected").val();
+        if (categoryId == "")
+            categoryId = 0;
+
+        $.getJSON('@Url.Action("GetDataCategory", "PieChart")', { fromDate: fromD, toDate: toD, categoryId: categoryId },
+            function (result) {
+                console.log(result);
+                if (result.Categories.length) {
+                    var i = 0;                
+
+                    $.each(result.Categories, function (index, c) {
+                        data.addRow([c.Name, c.Value]);
+                        colorsTabel[i] = c.Color;
+                        i++;
+                    });
+
+                    @if (Model != null)
+                    {
+                        <text>
+                        options = {
+                            'width': 600,
+                            'height': 400,
+                            'colors': colorsTabel,
+                            'chartArea': { left: 10, top: 0, width: '100%', height: '100%' },
+                            'legend': { position: 'right', textStyle: { fontSize: 18 }, alignment: 'center' },
+                            'titleTextStyle': { fontSize: 20, bold: false }
+                        };
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            options = {
+                                'width': 900,
+                                'height': 600,
+                                'colors': colorsTabel,
+                                'chartArea': { left: 20, top: 0, width: '100%', height: '100%' },
+                                'legend': { position: 'right', textStyle: { fontSize: 18 }, alignment: 'center' },
+                                'titleTextStyle': { fontSize: 20, bold: false },
+                            };
+                        </text>
+                    }
+                    
+
+                    // Отрисовка диаграммы
+                    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+
+                };
+            });
+
+    }
+
+    function drawChartData() {
+
+        @{
+                    if (Model != null)
+                    {
+                        Dictionary<int, CostsDataPoint> costsByCategories = new Dictionary<int, CostsDataPoint>();
+
+
+                        foreach (var purchase in Model)
+                        {
+                            if (costsByCategories.ContainsKey(purchase.CategoryId))
+                            {
+                                costsByCategories[purchase.CategoryId].Value += purchase.UnitCost * purchase.Amount;
+                            }
+                            else
+                            {
+                                costsByCategories.Add(purchase.CategoryId, new CostsDataPoint {Color = purchase.Category.ColorForDiagram, Value = purchase.UnitCost * purchase.Amount, Name = purchase.Category.Name});
+                            }
+                        }
+
+                    <text>
+                        // Create the data table
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'Category');
+                        data.addColumn('number', 'Slices');
+
+                        var options;
+                        var colorsTabel = [];
+                        var i = 0;
+
+                        @{
+                            foreach (var item in costsByCategories)
+                            {
+                                string name = item.Value.Name;
+                                double value = item.Value.Value;
+                                <text>
+                                    data.addRow(['@name', parseFloat('@value')]);
+                                    colorsTabel[i] = '@item.Value.Color';
+                                    i++;
+                                </text>
+                            }
+                        }
+                           
+                        
+
+                        options = {
+                            'width': 600,
+                            'height': 400,
+                            'colors': colorsTabel,
+                            'chartArea': { left: 10, top: 0, width: '100%', height: '100%' },
+                            'legend': { position: 'right', textStyle: { fontSize: 18 }, alignment: 'center' },
+                            'titleTextStyle': { fontSize: 20, bold: false }
+                        };
+
+                        // Instantiate and draw the chart
+                        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+                    </text>
+                    }
+               }
+    }
+
+</script>

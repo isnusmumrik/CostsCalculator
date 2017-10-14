@@ -1,0 +1,82 @@
+﻿@using CostsCalculator.Models
+@using CostsCalculator.HtmlHelpers
+@model PurchasesCollection
+
+@{
+    ViewBag.Title = "GetAllPurchases";
+}
+
+
+<div id="dataInTabel">
+    @using (Ajax.BeginForm("FilterByData", "Purchase", new AjaxOptions { UpdateTargetId = "dataInTabel" }))
+    {
+        <div id="filtrBlock">
+            <div class="dataHeader">Filter</div>
+            <div id="categoryId" class="categoryItem">
+                @Html.DropDownList("category", ViewBag.Categories as SelectList)
+            </div>
+            <div id="dateFrom" class="dataItem">
+                Date from:@Html.EditorFor(x => x.FromDate)
+            </div>
+            <div id="dateTo" class="dataItem">
+                Date to:@Html.EditorFor(x => x.ToDate)
+            </div>
+            <div class="dummyButton">
+                <input type="submit" value="Submit" />
+            </div>
+        </div>
+    }
+
+    @if (Model.Purchases.Any())
+    {
+        int i = 0;
+        <table>
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Unit</th>
+                <th>UnitCost</th>
+                <th>Total Cost</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var p in Model.Purchases)
+            {
+                i++;
+                <tr>
+                    <td>@i</td>
+                    @Html.Partial("Purchase", p)
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <div class="pager">
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("GetAllPurchases", new { dateFrom = Model.FromDate, dateTo = Model.ToDate, page = x }))
+        </div>
+        <div class="dummyButton">@Html.ActionLink("Add new purchase", "Create", "Purchase")</div>
+       
+    }
+    else
+    {
+        <div id="emptyData">YOU HAVEN'T BYE ANITIHNG YET</div>
+
+        <div class="dummyButton">@Html.ActionLink("Add new purchase", "Create", "Purchase")</div>
+    }
+
+</div>
+
+@if (Model.Purchases.Any())
+{
+    <div id="dataDiagram">
+        @Html.Partial("DrawPieChart", Model.Purchases)
+    </div>
+}
+
+
+

@@ -1,0 +1,20 @@
+﻿@model CostsCalculator.Models.ServieceModels.LogModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.EditorForModel()
+    <br/>
+    <div><input type="submit" value="Log in"/></div>
+    <br/>
+    <div>@Html.ActionLink("Register","Register")</div>
+}
+

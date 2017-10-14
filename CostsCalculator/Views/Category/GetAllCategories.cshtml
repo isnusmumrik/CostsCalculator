@@ -1,0 +1,46 @@
+﻿@using System.Web.UI.HtmlControls
+@using CostsCalculator.Models;
+@model IEnumerable<Category>
+@{
+    ViewBag.Title = "GetAllCategories";
+}
+
+@if (Model.Any())
+{
+    int i = 0;
+    <table>
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>Name</th>
+            <th>Color For Diagram</th>
+            <th></th>               
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var p in Model)
+        {               
+            i++;
+            <tr>
+                <td>@i</td>
+                <td>@p.Name</td>
+                <td ><div style="background-color: #@p.ColorForDiagram; border-radius:3px">#@p.ColorForDiagram</div></td>
+                <td >
+                    <div class="modMenu">
+                        <div  class="modifBlock">@Html.ActionLink("Delete", "Delete", new {categoryId = p.Id})</div>
+                        <div  class="modifBlock">@Html.ActionLink("Edit", "Edit", new {categoryId = p.Id})</div>
+                    </div>
+                </td> 
+            </tr>
+        }
+        </tbody>
+    </table>
+   <div class="dummyButton">@Html.ActionLink("Add new category","Create")</div>
+}
+else
+{
+    <div id="emptyData">YOU DON'T HAVE ANY CATEGORIES</div>
+
+    <div class="dummyButton">@Html.ActionLink("Add new category", "Create")</div>
+}
+

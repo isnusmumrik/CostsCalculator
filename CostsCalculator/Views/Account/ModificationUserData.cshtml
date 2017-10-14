@@ -1,0 +1,20 @@
+﻿@using CostsCalculator.Models.ServieceModels
+@model UserData
+
+@{
+    ViewBag.Title = "ModificationUserData";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ModificationUserData</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+   @Html.EditorForModel()
+
+    <div><input type="submit" value="Save" /></div>
+}

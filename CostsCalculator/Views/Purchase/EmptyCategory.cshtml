@@ -1,0 +1,9 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "ErrorData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="emptyData">"You don't have any category of costs. Please create category first"</div>
+<div class="dummyButton">@Html.ActionLink("Create Category", "Create", "Category")</div>

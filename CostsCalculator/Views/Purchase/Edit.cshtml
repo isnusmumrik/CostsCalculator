@@ -1,0 +1,41 @@
+﻿@using CostsCalculator.Models
+@model Purchase
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "Purchase"))
+{
+    <div id="editPurchase">
+        
+        <div>@Html.HiddenFor(x => x.Id)</div>
+        <div>@Html.HiddenFor(x => x.UserId)</div>
+        <div>@Html.LabelFor(x => x.Name)</div>
+        <div>@Html.EditorFor(x => x.Name)</div>
+        <div>@Html.LabelFor(x=>x.Amount)</div>
+        <div>@Html.EditorFor(x => x.Amount)</div>
+        <div>@Html.LabelFor(x=>x.Unit)</div>
+        <div>@Html.EditorFor(x => x.Unit)</div>
+        <div>@Html.LabelFor(x=>x.UnitCost)</div>
+        <div>@Html.EditorFor(x => x.UnitCost)</div>
+        <div>@Html.LabelFor(x=>x.Date)</div>
+        <div>
+            @Html.EditorFor(x => x.Date)          
+        </div>
+        <div>@Html.LabelFor(x=>x.Category)</div>
+        <div>@Html.DropDownListFor(x=>x.CategoryId, ViewBag.Categories as SelectList)</div>        
+        <div>
+            <div class="button"><input type="submit" value="Save" /></div>
+            <div class="button"><input type="button" value="Cancel" onclick="Back()"/></div>
+        </div>
+    </div>
+}
+
+<script>
+    function Back() {
+        history.back();
+    }
+</script>
+
+
+

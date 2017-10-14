@@ -1,0 +1,22 @@
+﻿@using System.Web.Mvc.Html
+@{
+    ViewBag.Title = "DrawChart";
+}
+
+<div class="filtrData">
+    <div class="filtrItem">
+        @Html.ActionLink("Week","FilterForPeriod",new {period = "week"})
+    </div>
+    <div class="filtrItem">
+        @Html.ActionLink("Month", "FilterForPeriod", new {period = "month"})
+    </div>
+    <div class="filtrItem">
+        @Html.ActionLink("Year", "FilterForPeriod", new {period = "year"})
+    </div>
+</div>
+
+<div id="dateFrom" class="dataItemInv">@Html.Action("GetLatestDateOfCost", "Purchase")</div>
+<div id="dateTo" class="dataItemInv">Date to:<input type="date" name="to" value="@($"{DateTime.Now:yyyy-MM-dd}")" /></div>
+
+@Html.Partial("DrawPieChart")
+@Html.Action("CalcAllCosts")

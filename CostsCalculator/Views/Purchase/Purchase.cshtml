@@ -1,0 +1,23 @@
+﻿@using CostsCalculator.Models
+@model Purchase
+    
+@{
+    ViewBag.Title = "Purchase";
+    var totalCost = Model.UnitCost * Model.Amount;
+}
+
+
+
+<td>@Model.Name</td>
+<td>@Model.Amount</td>
+<td>@Model.Unit</td>
+<td>@Model.UnitCost</td>
+<td>@totalCost</td>
+<td>@Model.Date.ToShortDateString()</td>
+<td>@Model.Category.Name</td>
+<td>
+    <div class="modMenu">
+        <div class="modifBlock">@Html.ActionLink("Delete", "Delete", new { purchaseId = Model.Id })</div>
+        <div class="modifBlock">@Html.ActionLink("Edit", "Edit", new { purchaseId = Model.Id })</div>
+    </div>
+</td>

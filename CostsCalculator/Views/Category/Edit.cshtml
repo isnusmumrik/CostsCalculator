@@ -1,0 +1,32 @@
+﻿@using CostsCalculator.Models
+@model Category
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit","Category"))
+{
+    @Html.HiddenFor(x=>x.Id)
+    @Html.HiddenFor(x=>x.UserId)
+    <div>@Html.LabelFor(x => x.Name)</div>
+    <div>@Html.EditorFor(x => x.Name)</div>
+    <div>@Html.LabelFor(x => x.ColorForDiagram)</div>
+    <div><input name="ColorForDiagram"  class="jscolor" type="text" /></div>
+    <div>
+        <div class="button"><input type="submit" value="Save"/></div>
+        <div class="button"><input type="button" value="Cancel" onclick="Back()"/></div>
+    </div>
+
+    <script>
+        function UpdateValue(jscolor) {
+            document.getElementById('idColor').value = jscolor;
+        }
+
+        function Back() {
+            history.back();
+        }
+    </script>
+}
+
+
+
