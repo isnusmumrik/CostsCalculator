@@ -1,4 +1,5 @@
-﻿BODY, TD { font-family: Segoe UI, Verdana }
+﻿
+BODY, TD { font-family: Segoe UI, Verdana }
 H1 { padding: .5em; padding-top: 0; font-weight: bold;
     font-size: 1.5em; border-bottom: 2px solid gray; }
 DIV#content { padding: .9em; }

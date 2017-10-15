@@ -29,7 +29,6 @@ namespace CostsCalculator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LogModel model)
         {
-            //Find user in DB
             if (ModelState.IsValid)
             {
                 User user = repository.Users.FirstOrDefault(x => x.Name == model.UserName && x.Password == model.Password);
