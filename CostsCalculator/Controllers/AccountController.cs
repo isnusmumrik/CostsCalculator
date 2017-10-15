@@ -7,7 +7,7 @@ using System.Web.Security;
 using CostsCalculator.Models;
 using CostsCalculator.Models.Abstract;
 using CostsCalculator.Models.ServieceModels;
-
+//Test
 namespace CostsCalculator.Controllers
 {
     public class AccountController : Controller
