@@ -22,5 +22,11 @@
     <div>@Html.EditorFor(x => x.Password)</div>
 
     <div><input type="submit" value="Register" /></div>
+    <div><input type="button" value="Cancel" onclick="Back()"/></div>
 
 }
+<script>
+    function Back() {
+        history.back();
+    }
+</script>
