@@ -22,6 +22,68 @@ select,input {
     color: #656665;
 }
 
+/*заголовок приложения*/
+#header {
+    background-color: #42715e;
+    border-bottom: 4px solid #325345;
+    height: 80px;
+}
+
+.title {
+    color: #fff;
+    font: bold 40px "Arial Narrow", "Franklin Gothic Medium", Arial;
+    height: 40px;
+    padding: 20px;
+}
+.title div {
+    display: inline;
+}
+
+#logOut {
+    alignment: right;
+    float: right;
+       
+}
+#logOut a {
+    padding: 3px;
+    border-right:3px solid #fff;
+    color: #fff;
+    font: bold 14px "Arial Narrow", "Franklin Gothic Medium", Arial;
+        
+}
+#logOut div {
+    font: italic 16px "Arial Narrow", "Franklin Gothic Medium", Arial;       
+}
+
+
+/*Боковое меню*/
+#menu {
+    font: bold 30px "Arial Narrow", "Franklin Gothic Medium", Arial;
+    float: left;   
+}
+.item {
+    margin: 10px;
+    display: block;
+    padding: 10px;
+}
+
+.item a {
+    color: #656665;
+}
+.item a:hover {
+    background-color: #87B5A3  ;
+    color: #fff;
+}
+
+/*Основной экран для контента*/
+#content {
+    float: left;
+    border-left:  solid  3px #325345;
+    font-weight: 100;
+    padding: 10px;
+    
+}
+
 table
  {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
@@ -41,6 +103,35 @@ table
             background: #85BCA6;
             padding: 3px;
         }
+        
+/*Кнопки модификации в таблице*/
+.modMenu {
+    padding: 3px;
+}
+.modifBlock {
+    display: inline-block;
+
+    margin: 3px;
+    padding: 3px;
+
+    background: inherit;
+
+    border-radius: 3px;
+    border: solid 2px #fff;
+
+}
+.modifBlock:hover {
+    background: #fff;
+    color: #ECE9E0;
+}
+.modifBlock a{
+    color: #fff;
+}
+.modifBlock a:hover{
+    color: #656665;
+}
+
+
 
 /*Pagging*/
 .pager A
@@ -61,101 +152,53 @@ table
         color: White;
     }
 
-/*заголовок приложения*/
-#header {
-    background-color: #42715e;
-    border-bottom: 4px solid #325345;
-    height: 80px;
+/*Фильтры даты*/
+.filtrData {
+    alignment: center;
+    margin-left: 175px;
+    margin-top: 10px;
+    margin-bottom: 3px;
 }
 
-    .title {
-        color: #fff;
-        font: bold 40px "Arial Narrow", "Franklin Gothic Medium", Arial;
-        height: 40px;
-        padding: 20px;
-    }
-    .title div {
-        display: inline;
-    }
+.filtrItem {
+    display: inline;
 
-    #logOut {
-        alignment: right;
-        float: right;
-       
-    }
-    #logOut a {
-        padding: 3px;
-        border-right:3px solid #fff;
-        color: #fff;
-        font: bold 14px "Arial Narrow", "Franklin Gothic Medium", Arial;
-        
-    }
-    #logOut div {
-        font: italic 16px "Arial Narrow", "Franklin Gothic Medium", Arial;       
-    }
+    margin:-3px;
+    padding: 5px;
 
+    border-radius: 5px;
+    border: solid 2px #325345;
 
-/*Боковое меню*/
-#menu {
-    font: bold 30px "Arial Narrow", "Franklin Gothic Medium", Arial;
-    float: left; 
-    
+    font: bold 24px "Lucida Sans Unicode";
+    text-align: center;  
+
+    background: #87B5A3;
 }
-    .item {
-        margin: 10px;
-        display: block;
-        padding: 10px;
-    }
-
-        .item a {
-            color: #656665;
-        }
-        .item a:hover {
-            background-color: #87B5A3  ;
-            color: #fff;
-        }
-
- /*Основной экран для контента*/
-#content {
-    float: left;
-    /*display: inline-block;*/
-    border-left:  solid  3px #325345;
-    font-weight: 100;
-    padding: 10px;
-    
+.filtrItem:hover {
+    background-color: #ECE9E0;
 }
 
-/*Кнопки модификации в таблице*/
-.modMenu {
-    padding: 3px;
+.filtrItem a {
+    color: #656665;
 }
-    .modifBlock {
-        display: inline-block;
 
-        margin: 3px;
-        padding: 3px;
+/*Блок фильтрации категорий*/
+#filtrBlock {
+    background: #ECE9E0;
+    color: #656665;
+    border: 16px solid #ECE9E0;
+    border-radius: 20px;
 
-        background: inherit;
+    padding: 5px;
+    margin: 5px;
+}
 
-        border-radius: 3px;
-        border: solid 2px #fff;
+/*Данные выборки пустые*/
+#emptyData {
+    font: bold 20px "Lucida Sans Unicode";
+    align-content: center;
+}
 
-    }
-    .modifBlock:hover {
-        background: #fff;
-        color: #ECE9E0;
-    }
-        .modifBlock a{
-            color: #fff;
-        }
-        .modifBlock a:hover{
-            color: #656665;
-        }
-
-
-/*Визуализация ссылки в виде кнопки*/
-/*Визуализация ссылки в виде кнопки*/
-/*Визуализация ссылки в виде кнопки*/
 /*Визуализация ссылки в виде кнопки*/
 .dummyButton a{
     float: left;
@@ -216,46 +259,7 @@ table
     visibility: hidden;
 }
 
-/*Фильтры даты*/
-.filtrData {
-    alignment: center;
-    margin-left: 175px;
-    margin-top: 10px;
-    margin-bottom: 3px;
-}
 
-    .filtrItem {
-        display: inline;
-
-        margin:-3px;
-        padding: 5px;
-
-        border-radius: 5px;
-        border: solid 2px #325345;
-
-        font: bold 24px "Lucida Sans Unicode";
-        text-align: center;  
-
-        background: #87B5A3;
-    }
-    .filtrItem:hover {
-        background-color: #ECE9E0;
-    }
-
-        .filtrItem a {
-            color: #656665;
-        }
-
-/*Блок фильтрации категорий*/
-#filtrBlock {
-    background: #ECE9E0;
-    color: #656665;
-    border: 16px solid #ECE9E0;
-    border-radius: 20px;
-
-    padding: 5px;
-    margin: 5px;
-}
 
 .textData {
 
@@ -294,8 +298,3 @@ table
     padding-left: 20px;
 }
 
-/*Данные выборки пустые*/
-#emptyData {
-    font: bold 20px "Lucida Sans Unicode";
-    align-content: center;
-}
