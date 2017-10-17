@@ -3,11 +3,9 @@
 }
 
 a {    
-    text-decoration: none; /* Убираем подчеркивание у ссылок */
-}
+    text-decoration: none; 
 a:hover { 
-    text-decoration: underline; /* Добавляем подчеркивание 
-                                   при наведении курсора мыши на ссылку */
+    text-decoration: underline;
 }
 label {
     font: bold 14px "Lucida Sans Unicode";
@@ -22,7 +20,6 @@ select,input {
     color: #656665;
 }
 
-/*заголовок приложения*/
 #header {
     background-color: #42715e;
     border-bottom: 4px solid #325345;
@@ -56,7 +53,7 @@ select,input {
 }
 
 
-/*Боковое меню*/
+/*Left side menu*/
 #menu {
     font: bold 30px "Arial Narrow", "Franklin Gothic Medium", Arial;
     float: left;   
@@ -75,7 +72,6 @@ select,input {
     color: #fff;
 }
 
-/*Основной экран для контента*/
 #content {
     float: left;
     border-left:  solid  3px #325345;
@@ -104,7 +100,7 @@ table
             padding: 3px;
         }
         
-/*Кнопки модификации в таблице*/
+/*Modification button in tabel*/
 .modMenu {
     padding: 3px;
 }
@@ -152,7 +148,7 @@ table
         color: White;
     }
 
-/*Фильтры даты*/
+/*Date filter*/
 .filtrData {
     alignment: center;
     margin-left: 175px;
@@ -182,7 +178,7 @@ table
     color: #656665;
 }
 
-/*Блок фильтрации категорий*/
+/*Category filter*/
 #filtrBlock {
     background: #ECE9E0;
     color: #656665;
@@ -193,13 +189,13 @@ table
     margin: 5px;
 }
 
-/*Данные выборки пустые*/
+/*Empty ata tabel*/
 #emptyData {
     font: bold 20px "Lucida Sans Unicode";
     align-content: center;
 }
 
-/*Визуализация ссылки в виде кнопки*/
+/*Links visualized as button */
 .dummyButton a{
     float: left;
     margin: 5px;
@@ -229,6 +225,7 @@ table
     background-color: inherit;   
 }
 
+/*Button*/
 .button:hover {
     background: #ECE9E0;
     text-decoration: none;
@@ -246,7 +243,7 @@ table
 
     }
 
-/*Круговая диаграмма*/
+/*Pie chart main page*/
 #chart_div {
     font: normal 18px "Lucida Sans Unicode";
     margin: 10px;
@@ -257,20 +254,31 @@ table
     padding: 0px;
     border: none;
     visibility: hidden;
+    position: fixed;
+    border: none;
+    size: 0;
 }
 
+/*Pie chart in purchase list*/
+#dataDiagram,#dataInTabel {
+    float: left;
+}
 
+#dataDiagram {
+    padding-top: 2%;
+    padding-left: 20px;
+}
 
+/*Info label about all cost main page*/
 .textData {
 
     font: bold 30px "Lucida Sans Unicode";
     color: #656665;
 
-    margin-left: 150px;
-  
+    margin-left: 150px;  
 }
 
-
+/*Info label in filtration block*/
 .dataHeader {
     font: bold 24px "Lucida Sans Unicode";
 }
@@ -280,21 +288,8 @@ table
     margin: 5px;
 }
 
-/*Диаграмма на главной странице*/
-.dataItemInv {
-    position: fixed;
-    border: none;
-    size: 0;
-}
 
 
-/*Диаграмма в списке покупок*/
-#dataDiagram,#dataInTabel {
-    float: left;
-}
 
-#dataDiagram {
-    padding-top: 2%;
-    padding-left: 20px;
-}
+
 
