@@ -106,12 +106,14 @@ namespace CostsCalculator.Controllers
         }
 
         #region MODIFICATION
-        [HttpGet]
+        [HttpDelete]
         public ActionResult Delete(int purchaseId)
         {
             int userId = repository.Users.FirstOrDefault(x => x.Name == User.Identity.Name).Id;
-
-            repository.DeletePurchase(purchaseId);
+            if (ModelState.IsValid)
+            {
+                repository.DeletePurchase(purchaseId);
+            }
 
             DateTime dateFromFirst;
             if(repository.Purchases.Count(x=>x.UserId == userId) >0)

@@ -39,11 +39,11 @@ namespace CostsCalculator.Controllers
         [HttpGet]
         public ActionResult Delete(int categoryId)
         {
-            Category deleteCategory = repository.DeleteCategory(categoryId);
-            if (deleteCategory != null)
+            if (ModelState.IsValid)
             {
-                TempData["message"] = string.Format($"{deleteCategory.Id} was deleted");
+                Category deleteCategory = repository.DeleteCategory(categoryId);
             }
+           
             return RedirectToAction("GetAllCategories");
         }
 
