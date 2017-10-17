@@ -1,0 +1,7 @@
+CostsCalculator.Tests/*
+
+*.dll
+CostsCalculator.Tests/bin/Debug/*
+CostsCalculator/bin/*
+CostsCalculator/obj/*
+CostsCalculator/obj/Debug
