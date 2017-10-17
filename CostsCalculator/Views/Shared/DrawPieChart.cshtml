@@ -7,10 +7,10 @@
 
 <script type="text/javascript">
 
-    //Подгружаем Api
+
     google.load('visualization', '1.0', { 'packages': ['corechart'] });
 
-    // Устанавливаем callback
+    // Setup callback
     google.setOnLoadCallback(drawChart);
 
 
@@ -68,7 +68,7 @@
                     }
                     
 
-                    // Отрисовка диаграммы
+                    // Draw chart
                     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
                     chart.draw(data, options);
 
