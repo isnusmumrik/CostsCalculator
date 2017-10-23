@@ -40,7 +40,7 @@
         
 
         @RenderSection("scripts", required: false)
-        <!--если браузер не создает специального поля для date, то добавляем datepicker-->
+        <!--if browser doesn't create special field for date, than add datepicker-->
         <script type="text/javascript">
             $(function () {
                 if (!Modernizr.inputtypes.date) {
