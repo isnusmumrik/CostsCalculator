@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using CostsCalculator.Models;
@@ -64,7 +61,7 @@ namespace CostsCalculator.Controllers
                 repository.SaveUser(modelUser); 
 
                 user = repository.Users.FirstOrDefault(
-                    x => x.Name == modelUser.Name && x.Password == x.Password && x.Email == x.Email);
+                    x => x.Name == modelUser.Name && x.Password == modelUser.Password && x.Email == modelUser.Email);
 
                 if (user != null)
                 {
@@ -81,13 +78,20 @@ namespace CostsCalculator.Controllers
         }
 
         [HttpGet]
-        public ViewResult ModificationUserData()
+        public ActionResult ModificationUserData()
         {
-            int userId = repository.Users.FirstOrDefault(x => x.Name == User.Identity.Name).Id;
-            UserData modifUser = new UserData();
-            modifUser.Id = userId;
+            User currUser = repository.Users.FirstOrDefault(x => x.Name == User.Identity.Name);
 
-            return View(modifUser);
+            if (currUser != null)
+            {
+                int userId = currUser.Id;
+                UserData modifUser = new UserData();
+                modifUser.Id = userId;
+
+                return View(modifUser);
+            }
+
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
@@ -106,14 +110,17 @@ namespace CostsCalculator.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public JsonResult CheckPassword(string OldPassword)
+        public ActionResult CheckPassword(string OldPassword)
         {
             User userModified = repository.Users.FirstOrDefault(x => x.Name == User.Identity.Name);
+            if (userModified != null)
+            {
+                if (userModified.Password == OldPassword)
+                    return Json(true, JsonRequestBehavior.AllowGet);
 
-            if (userModified.Password == OldPassword)
-                return Json(true, JsonRequestBehavior.AllowGet);
-
-            return Json("Your old password is incorrect");
+                return Json("Your old password is incorrect");
+            }
+            return RedirectToAction("Login","Account");
         }
 
         public ActionResult Logoff()

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using CostsCalculator.Models;
 using CostsCalculator.Models.Abstract;
@@ -20,20 +17,31 @@ namespace CostsCalculator.Controllers
         [HttpGet]
         public ActionResult GetAllCategories()
         {
-            int userId = repository.Users.FirstOrDefault(x => x.Name == User.Identity.Name).Id;
+            User currUser = repository.Users.FirstOrDefault(x => x.Name == User.Identity.Name);
+            if(currUser != null)
+            {
+                int userId =currUser .Id;
 
-            var categories = repository.Categories.Where(x=>x.UserId == userId).ToList();
+                var categories = repository.Categories.Where(x => x.UserId == userId).ToList();
 
-            return View(categories);
+                return View(categories);
+            }
+
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpGet]
         public ActionResult Edit(int categoryId)
         {
-            int userId = repository.Users.FirstOrDefault(x => x.Name == User.Identity.Name).Id;
+            User currUser = repository.Users.FirstOrDefault(x => x.Name == User.Identity.Name);
+            if(currUser != null)
+            {
+                int userId =currUser .Id;
 
-            Category category = repository.Categories.FirstOrDefault(p => p.Id == categoryId && p.UserId == userId);
-            return View(category);
+                Category category = repository.Categories.FirstOrDefault(p => p.Id == categoryId && p.UserId == userId);
+                return View(category);
+            }
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpGet]
@@ -41,7 +49,7 @@ namespace CostsCalculator.Controllers
         {
             if (ModelState.IsValid)
             {
-                Category deleteCategory = repository.DeleteCategory(categoryId);
+                repository.DeleteCategory(categoryId);
             }
            
             return RedirectToAction("GetAllCategories");
@@ -50,11 +58,17 @@ namespace CostsCalculator.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            int userId = repository.Users.FirstOrDefault(x => x.Name == User.Identity.Name).Id;
+            User currUser = repository.Users.FirstOrDefault(x => x.Name == User.Identity.Name);
 
-            Category category = new Category { UserId = userId};
+            if (currUser != null)
+            {
+                int userId = currUser.Id;
 
-            return View("Edit", category);
+                Category category = new Category {UserId = userId};
+
+                return View("Edit", category);
+            }
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]

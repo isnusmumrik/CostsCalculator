@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.ModelBinding;
+﻿using System.Linq;
 using CostsCalculator.Models.Abstract;
-using CostsCalculator.Models.ServieceModels;
 
 namespace CostsCalculator.Models.Concrete
 {
