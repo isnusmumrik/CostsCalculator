@@ -9,6 +9,9 @@ show diagram of all costs in all categories in selected time period.
 The application forms purchases list for every user.
 It has login and registration forms.
 
+### Database requirements 
+For correct work of project should be created DB with name 'Costs'. There are 3 tables: Users, Categories, Purchases. Scripts for creating them are available in the folder 'sql'.
+
 ### There are used such frameworks and libraries:
 * ASP .NET MVC 5
 * Entity Framework
