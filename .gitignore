@@ -1,5 +1,6 @@
 CostsCalculator.Tests/*
-
+*.ldf
+*.mdf
 *.dll
 CostsCalculator.Tests/bin/Debug/*
 CostsCalculator/bin/*
